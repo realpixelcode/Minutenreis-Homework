@@ -2,3 +2,4 @@
 *.exe
 *.zip
 GIP/andere_Studenten/*
+!.gitkeep
