@@ -1,5 +1,6 @@
 
 *.exe
 *.zip
+*.out
 GIP/andere_Studenten/*
 !.gitkeep
