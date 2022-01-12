@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+        "functional": "c",
+        "math.h": "c",
+        "binary.h": "c",
+        "*.tcc": "c",
+        "algorithm": "c",
+        "fstream": "c",
+        "type_traits": "c",
+        "stdio.h": "c",
+        "random": "c"
+    }
+}

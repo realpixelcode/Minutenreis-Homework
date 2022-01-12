@@ -1,0 +1,9 @@
+JLT (4)
+SHL
+RET
+SHL
+STORE a (9)
+LOADK 1
+ADD a (9)
+RET
+Wort a
