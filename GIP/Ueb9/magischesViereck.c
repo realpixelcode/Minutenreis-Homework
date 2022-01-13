@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int **initialize2DArray(int seitenlaenge);
-int **magicSquare(int seitenlaenge);
-void printSquare(int **quadrat, int seitenlaenge);
-void freeSquare(int **quadrat, int seitenlaenge);
+int **initialize2DArray(int sidelength);
+int **magicSquare(int sidelength);
+void printSquare(int **square, int sidelength);
+void freeSquare(int **square, int sidelength);
 
 int main()
 {
@@ -67,7 +67,6 @@ int **magicSquare(int sidelength)
         if (square[column][row] == 0)
         {
             square[column][row] = i;
-            i++;
         }
         else
         {
@@ -77,8 +76,9 @@ int **magicSquare(int sidelength)
                 row = (row + 1) % sidelength;
             }
             square[column][row] = i;
-            i++;
+            
         }
+        i++;
     }
     return square;
 }

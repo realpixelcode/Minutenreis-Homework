@@ -1,15 +1,15 @@
 #include <stdio.h>
-int *populateArray(int Array[], int ArrayLength);
-int linearSearch(int gesuchteZahl, int Suchbereich[], int ArrayLength);
-int binarySearch(int gesuchteZahl, int *suchbereich, int start, int ende);
-int implementieren();
+int *populateArray(int array[], int arrayLength);
+int linearSearch(int searchedNumber, int array[], int arrayLength);
+int binarySearch(int searchedNumber, int array[], int start, int end);
+int implementieren(int searchedNumber);
 
 int main()
 {
-    int gesuchteZahl;
+    int searchedNumber;
     printf("Geben sie eine Zahl ein, diese wird in einem Array aller Primzahlen bis 100 gesucht, bei Erfolg wird ihre position ausgegeben\n");
-    scanf("%d", &gesuchteZahl);
-    int result = implementieren(gesuchteZahl);
+    scanf("%d", &searchedNumber);
+    int result = implementieren(searchedNumber);
     if (result != 0)
     {
         printf("Ihre gesuchte Zahl ist die %d. Primzahl.", result);
@@ -17,26 +17,26 @@ int main()
     return 0;
 }
 
-int implementieren(int gesuchteZahl)
+int implementieren(int searchedNumber)
 {
-    int primzahlen[25] = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97};
-    return binarySearch(gesuchteZahl, primzahlen, 0, 24) + 1; // Position = x. Primzahl
+    int primes[25] = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97};
+    return binarySearch(searchedNumber, primes, 0, 24) + 1; // Position = x. Primzahl
 }
 
-int *populateArray(int Array[], int ArrayLength)
-{
-    for (int i = 0; i <= ArrayLength - 1; i++)
-    {
-        Array[i] = i;
-    }
-    return Array;
-}
-
-int linearSearch(int gesuchteZahl, int suchbereich[], int arrayLength)
+int *populateArray(int array[], int arrayLength)
 {
     for (int i = 0; i <= arrayLength - 1; i++)
     {
-        if (gesuchteZahl == suchbereich[i])
+        array[i] = i;
+    }
+    return array;
+}
+
+int linearSearch(int searchedNumber, int array[], int arrayLength)
+{
+    for (int i = 0; i <= arrayLength - 1; i++)
+    {
+        if (searchedNumber == array[i])
         {
             return i;
         }
@@ -44,23 +44,23 @@ int linearSearch(int gesuchteZahl, int suchbereich[], int arrayLength)
     return -1;
 }
 
-int binarySearch(int gesuchteZahl, int *suchbereich, int start, int ende)
+int binarySearch(int searchedNumber, int array[], int start, int end)
 {
-    int mitte = (start + ende) / 2; //"obere Mitte"
-    if (ende < start)
+    int center = (start + end) / 2; //"obere Mitte"
+    if (end < start)
     {
         return -1;
     }
-    else if (gesuchteZahl == suchbereich[mitte])
+    else if (searchedNumber == array[center])
     {
-        return mitte;
+        return center;
     }
-    else if (gesuchteZahl > suchbereich[mitte])
+    else if (searchedNumber > array[center])
     {
-        return binarySearch(gesuchteZahl, suchbereich, mitte + 1, ende);
+        return binarySearch(searchedNumber, array, center + 1, end);
     }
     else
     {
-        return binarySearch(gesuchteZahl, suchbereich, start, mitte - 1);
+        return binarySearch(searchedNumber, array, start, center - 1);
     }
 }
