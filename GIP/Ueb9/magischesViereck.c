@@ -3,85 +3,82 @@
 
 int **initialize2DArray(int seitenlaenge);
 int **magicSquare(int seitenlaenge);
-void printQuadrat(int **quadrat, int seitenlaenge);
-int rechteSpalte(int spalte, int seitenlaenge);
-int linkeSpalte(int spalte, int seitenlaenge);
-int untereZeile(int zeile, int seitenlaenge);
+void printSquare(int **quadrat, int seitenlaenge);
 void freeSquare(int **quadrat, int seitenlaenge);
 
 int main()
 {
-    int seitenlaenge;
+    int sidelength;
     printf("Geben Sie eine ungerade Seitenlaenge fuer ihr gewuenschtes magisches Quadrat an.\n");
-    scanf("%d", &seitenlaenge);
-    if (seitenlaenge < 1 || seitenlaenge % 2 != 1)
+    scanf("%d", &sidelength);
+    if (sidelength < 1 || sidelength % 2 != 1)
     {
         printf("Ungueltige Eingabe.\n");
         return 1;
     }
-    printQuadrat(magicSquare(seitenlaenge), seitenlaenge);
+    printSquare(magicSquare(sidelength), sidelength);
     return 0;
 }
 
-int **initialize2DArray(int seitenlaenge)
+int **initialize2DArray(int sidelength)
 {
-    int **quadrat = malloc(seitenlaenge * sizeof(int *));
-    for (int i = 0; i < seitenlaenge; i++)
+    int **square = malloc(sidelength * sizeof(int *));
+    for (int i = 0; i < sidelength; i++)
     {
-        quadrat[i] = (int *)calloc(seitenlaenge, sizeof(int));
+        square[i] = (int *)calloc(sidelength, sizeof(int));
     }
-    return quadrat;
+    return square;
 }
 
-void printQuadrat(int **quadrat, int seitenlaenge)
+void printSquare(int **square, int sidelength)
 {
-    for (int zeile = 0; zeile < seitenlaenge; zeile++)
+    for (int zeile = 0; zeile < sidelength; zeile++)
     {
-        for (int spalte = 0; spalte < seitenlaenge; spalte++)
+        for (int spalte = 0; spalte < sidelength; spalte++)
         {
-            printf("%d\t", quadrat[spalte][zeile]);
+            printf("%d\t", square[spalte][zeile]);
         }
         printf("\n");
     }
-    freeSquare(quadrat, seitenlaenge);
+    freeSquare(square, sidelength);
 }
 
-void freeSquare(int **quadrat, int seitenlaenge)
+void freeSquare(int **square, int sidelength)
 {
-    for (int i = 0; i < seitenlaenge; i++)
+    for (int i = 0; i < sidelength; i++)
     {
-        free(quadrat[i]);
+        free(square[i]);
     }
-    free(quadrat);
+    free(square);
 }
 
-int **magicSquare(int seitenlaenge)
+int **magicSquare(int sidelength)
 {
-    int **quadrat = initialize2DArray(seitenlaenge);
+    int **square = initialize2DArray(sidelength);
     int i = 1;
-    int spalte = seitenlaenge / 2;
-    int zeile = (seitenlaenge / 2 + 1) % seitenlaenge;
-    quadrat[spalte][zeile] = i;
+    int column = sidelength / 2;
+    int row = (sidelength / 2 + 1) % sidelength;
+    square[column][row] = i;
     i++;
-    while (i <= seitenlaenge * seitenlaenge)
+    while (i <= sidelength * sidelength)
     {
-        spalte = (spalte + 1) % seitenlaenge;
-        zeile = (zeile + 1) % seitenlaenge;
-        if (quadrat[spalte][zeile] == 0)
+        column = (column + 1) % sidelength;
+        row = (row + 1) % sidelength;
+        if (square[column][row] == 0)
         {
-            quadrat[spalte][zeile] = i;
+            square[column][row] = i;
             i++;
         }
         else
         {
-            while (quadrat[spalte][zeile] != 0)
+            while (square[column][row] != 0)
             {
-                spalte = (spalte + seitenlaenge - 1) % seitenlaenge; //+seitenlaenge um -1 % seitenlaenge = -1 zu entgehen
-                zeile = (zeile + 1) % seitenlaenge;
+                column = (column + sidelength - 1) % sidelength; //+seitenlaenge um -1 % seitenlaenge = -1 zu entgehen
+                row = (row + 1) % sidelength;
             }
-            quadrat[spalte][zeile] = i;
+            square[column][row] = i;
             i++;
         }
     }
-    return quadrat;
+    return square;
 }
