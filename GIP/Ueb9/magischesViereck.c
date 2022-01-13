@@ -25,7 +25,7 @@ int main()
 
 int **initialize2DArray(int seitenlaenge)
 {
-    int **quadrat = calloc(seitenlaenge, sizeof(int *));
+    int **quadrat = malloc(seitenlaenge * sizeof(int *));
     for (int i = 0; i < seitenlaenge; i++)
     {
         quadrat[i] = (int *)calloc(seitenlaenge, sizeof(int));
@@ -60,7 +60,7 @@ int **magicSquare(int seitenlaenge)
     int **quadrat = initialize2DArray(seitenlaenge);
     int i = 1;
     int spalte = seitenlaenge / 2;
-    int zeile = (zeile + 1) % seitenlaenge;
+    int zeile = (seitenlaenge / 2 + 1) % seitenlaenge;
     quadrat[spalte][zeile] = i;
     i++;
     while (i <= seitenlaenge * seitenlaenge)
