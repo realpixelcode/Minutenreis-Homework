@@ -25,7 +25,7 @@ int **initialize2DArray(int sidelength)
     int **square = malloc(sidelength * sizeof(int *));
     for (int i = 0; i < sidelength; i++)
     {
-        square[i] = (int *)calloc(sidelength, sizeof(int));
+        square[i] = calloc(sidelength, sizeof(int));
     }
     return square;
 }
@@ -55,12 +55,10 @@ void freeSquare(int **square, int sidelength)
 int **magicSquare(int sidelength)
 {
     int **square = initialize2DArray(sidelength);
-    int i = 1;
     int column = sidelength / 2;
     int row = (sidelength / 2 + 1) % sidelength;
-    square[column][row] = i;
-    i++;
-    while (i <= sidelength * sidelength)
+    square[column][row] = 1;
+    for(int i = 2; i <= sidelength * sidelength; i++)
     {
         column = (column + 1) % sidelength;
         row = (row + 1) % sidelength;
@@ -76,9 +74,7 @@ int **magicSquare(int sidelength)
                 row = (row + 1) % sidelength;
             }
             square[column][row] = i;
-            
         }
-        i++;
     }
     return square;
 }
