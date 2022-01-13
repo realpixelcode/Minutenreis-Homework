@@ -60,13 +60,13 @@ int **magicSquare(int seitenlaenge)
     int **quadrat = initialize2DArray(seitenlaenge);
     int i = 1;
     int spalte = seitenlaenge / 2;
-    int zeile = untereZeile(seitenlaenge / 2, seitenlaenge);
+    int zeile = (zeile + 1) % seitenlaenge;
     quadrat[spalte][zeile] = i;
     i++;
     while (i <= seitenlaenge * seitenlaenge)
     {
-        spalte = rechteSpalte(spalte, seitenlaenge);
-        zeile = untereZeile(zeile, seitenlaenge);
+        spalte = (spalte + 1) % seitenlaenge;
+        zeile = (zeile + 1) % seitenlaenge;
         if (quadrat[spalte][zeile] == 0)
         {
             quadrat[spalte][zeile] = i;
@@ -76,8 +76,8 @@ int **magicSquare(int seitenlaenge)
         {
             while (quadrat[spalte][zeile] != 0)
             {
-                spalte = linkeSpalte(spalte, seitenlaenge);
-                zeile = untereZeile(zeile, seitenlaenge);
+                spalte = (spalte - 1) % seitenlaenge;
+                zeile = (zeile + 1) % seitenlaenge;
             }
             quadrat[spalte][zeile] = i;
             i++;

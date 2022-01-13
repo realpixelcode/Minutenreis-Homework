@@ -1,8 +1,7 @@
 #include <stdio.h>
 int *populateArray(int Array[], int ArrayLength);
 int linearSearch(int gesuchteZahl, int Suchbereich[], int ArrayLength);
-int binarySearch(int gesuchteZahl, int Suchbereich[], int ArrayLength);
-int searchingBinary(int gesuchteZahl, int suchbereich[], int arrayLength);
+int binarySearch(int gesuchteZahl, int *suchbereich, int start, int ende);
 
 int main()
 {
@@ -12,7 +11,7 @@ int main()
     printf("Geben sie eine Zahl ein, die Sie suchen; Array enthaelt alle ganzen Zahlen von 0 - 99 an selbigem Index\n");
     scanf("%d", &gesuchteZahl);
     printf("Die Zahl befindet sich an Index %d, linaer ermittelt\n", linearSearch(gesuchteZahl, Test, 100));
-    printf("Die Zahl befindet sich an Index %d, binear ermittelt\n", binarySearch(gesuchteZahl, Test, 100));
+    printf("Die Zahl befindet sich an Index %d, binear ermittelt\n", binarySearch(gesuchteZahl, Test, 0, 99));
     return 0;
 }
 
@@ -37,27 +36,12 @@ int linearSearch(int gesuchteZahl, int suchbereich[], int arrayLength)
     return -1;
 }
 
-int binarySearch(int gesuchteZahl, int *suchbereich, int arrayLength)
+int binarySearch(int gesuchteZahl, int *suchbereich, int start, int ende)
 {
-    int gefundenenePosition = searchingBinary(gesuchteZahl, suchbereich, arrayLength);
-    if (*(suchbereich + gefundenenePosition) == gesuchteZahl)
-    {
-        return gefundenenePosition;
-    }
-    else
+    int mitte = (start + ende) / 2; //"obere Mitte"
+    if (ende < start)
     {
         return -1;
-    }
-}
-
-int searchingBinary(int gesuchteZahl, int *suchbereich, int arrayLength)
-{
-    int mitte = arrayLength / 2; //"obere Mitte"
-    int remainingLength;
-
-    if (arrayLength <= 1)
-    {
-        return 0;
     }
     else if (gesuchteZahl == *(suchbereich + mitte))
     {
@@ -65,19 +49,10 @@ int searchingBinary(int gesuchteZahl, int *suchbereich, int arrayLength)
     }
     else if (gesuchteZahl > *(suchbereich + mitte))
     {
-        if (arrayLength % 2 == 0)
-        {
-            remainingLength = arrayLength / 2 - 1;
-        }
-        else
-        {
-            remainingLength = arrayLength / 2;
-        }
-        return mitte + 1 + searchingBinary(gesuchteZahl, suchbereich + mitte + 1, remainingLength);
+        return binarySearch(gesuchteZahl, suchbereich, mitte + 1, ende);
     }
     else
     {
-        remainingLength = arrayLength / 2;
-        return searchingBinary(gesuchteZahl, suchbereich, remainingLength);
+        return binarySearch(gesuchteZahl, suchbereich, start, mitte - 1);
     }
 }
