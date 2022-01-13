@@ -14,7 +14,7 @@ int main()
     int seitenlaenge;
     printf("Geben Sie eine ungerade Seitenlaenge fuer ihr gewuenschtes magisches Quadrat an.\n");
     scanf("%d", &seitenlaenge);
-    if (seitenlaenge < 1 || seitenlaenge % 2 != 1) // 3 da seitenlaenge 1 kein magisches Quadrat ergibt
+    if (seitenlaenge < 1 || seitenlaenge % 2 != 1)
     {
         printf("Ungueltige Eingabe.\n");
         return 1;
@@ -76,7 +76,7 @@ int **magicSquare(int seitenlaenge)
         {
             while (quadrat[spalte][zeile] != 0)
             {
-                spalte = (spalte - 1) % seitenlaenge;
+                spalte = (spalte + seitenlaenge - 1) % seitenlaenge; //+seitenlaenge um -1 % seitenlaenge = -1 zu entgehen
                 zeile = (zeile + 1) % seitenlaenge;
             }
             quadrat[spalte][zeile] = i;
@@ -84,40 +84,4 @@ int **magicSquare(int seitenlaenge)
         }
     }
     return quadrat;
-}
-
-int rechteSpalte(int spalte, int seitenlaenge)
-{
-    if (spalte + 1 == seitenlaenge)
-    {
-        return 0;
-    }
-    else
-    {
-        return spalte + 1;
-    }
-}
-
-int linkeSpalte(int spalte, int seitenlaenge)
-{
-    if (spalte - 1 == -1)
-    {
-        return seitenlaenge - 1;
-    }
-    else
-    {
-        return spalte - 1;
-    }
-}
-
-int untereZeile(int zeile, int seitenlaenge)
-{
-    if (zeile + 1 == seitenlaenge)
-    {
-        return 0;
-    }
-    else
-    {
-        return zeile + 1;
-    }
 }
