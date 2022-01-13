@@ -10,4 +10,4 @@ HALT
 LOADK 12
 OUT
 HALT
-Wort a
+DW a

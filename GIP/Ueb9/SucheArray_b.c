@@ -20,8 +20,8 @@ int main()
 
 int implementieren(int gesuchteZahl)
 {
-    int Primzahlen[25] = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97};
-    return binarySearch(gesuchteZahl, Primzahlen, 25) + 1; // Position = x. Primzahl
+    int primzahlen[25] = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97};
+    return binarySearch(gesuchteZahl, primzahlen, 25) + 1; // Position = x. Primzahl
 }
 
 int *populateArray(int Array[], int ArrayLength)
