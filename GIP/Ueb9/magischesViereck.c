@@ -1,123 +1,80 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int **initialize2DArray(int seitenlaenge);
-int **magicSquare(int seitenlaenge);
-void printQuadrat(int **quadrat, int seitenlaenge);
-int rechteSpalte(int spalte, int seitenlaenge);
-int linkeSpalte(int spalte, int seitenlaenge);
-int untereZeile(int zeile, int seitenlaenge);
-void freeSquare(int **quadrat, int seitenlaenge);
+int **initialize2DArray(int sidelength);
+int **magicSquare(int sidelength);
+void printSquare(int **square, int sidelength);
+void freeSquare(int **square, int sidelength);
 
 int main()
 {
-    int seitenlaenge;
+    int sidelength;
     printf("Geben Sie eine ungerade Seitenlaenge fuer ihr gewuenschtes magisches Quadrat an.\n");
-    scanf("%d", &seitenlaenge);
-    if (seitenlaenge < 1 || seitenlaenge % 2 != 1) // 3 da seitenlaenge 1 kein magisches Quadrat ergibt
+    scanf("%d", &sidelength);
+    if (sidelength < 1 || sidelength % 2 != 1)
     {
         printf("Ungueltige Eingabe.\n");
         return 1;
     }
-    printQuadrat(magicSquare(seitenlaenge), seitenlaenge);
+    printSquare(magicSquare(sidelength), sidelength);
     return 0;
 }
 
-int **initialize2DArray(int seitenlaenge)
+int **initialize2DArray(int sidelength)
 {
-    int **quadrat = calloc(seitenlaenge, sizeof(int *));
-    for (int i = 0; i < seitenlaenge; i++)
+    int **square = malloc(sidelength * sizeof(int *));
+    for (int i = 0; i < sidelength; i++)
     {
-        quadrat[i] = (int *)calloc(seitenlaenge, sizeof(int));
+        square[i] = calloc(sidelength, sizeof(int));
     }
-    return quadrat;
+    return square;
 }
 
-void printQuadrat(int **quadrat, int seitenlaenge)
+void printSquare(int **square, int sidelength)
 {
-    for (int zeile = 0; zeile < seitenlaenge; zeile++)
+    for (int zeile = 0; zeile < sidelength; zeile++)
     {
-        for (int spalte = 0; spalte < seitenlaenge; spalte++)
+        for (int spalte = 0; spalte < sidelength; spalte++)
         {
-            printf("%d\t", quadrat[spalte][zeile]);
+            printf("%d\t", square[spalte][zeile]);
         }
         printf("\n");
     }
-    freeSquare(quadrat, seitenlaenge);
+    freeSquare(square, sidelength);
 }
 
-void freeSquare(int **quadrat, int seitenlaenge)
+void freeSquare(int **square, int sidelength)
 {
-    for (int i = 0; i < seitenlaenge; i++)
+    for (int i = 0; i < sidelength; i++)
     {
-        free(quadrat[i]);
+        free(square[i]);
     }
-    free(quadrat);
+    free(square);
 }
 
-int **magicSquare(int seitenlaenge)
+int **magicSquare(int sidelength)
 {
-    int **quadrat = initialize2DArray(seitenlaenge);
-    int i = 1;
-    int spalte = seitenlaenge / 2;
-    int zeile = untereZeile(seitenlaenge / 2, seitenlaenge);
-    quadrat[spalte][zeile] = i;
-    i++;
-    while (i <= seitenlaenge * seitenlaenge)
+    int **square = initialize2DArray(sidelength);
+    int column = sidelength / 2;
+    int row = (sidelength / 2 + 1) % sidelength;
+    square[column][row] = 1;
+    for(int i = 2; i <= sidelength * sidelength; i++)
     {
-        spalte = rechteSpalte(spalte, seitenlaenge);
-        zeile = untereZeile(zeile, seitenlaenge);
-        if (quadrat[spalte][zeile] == 0)
+        column = (column + 1) % sidelength;
+        row = (row + 1) % sidelength;
+        if (square[column][row] == 0)
         {
-            quadrat[spalte][zeile] = i;
-            i++;
+            square[column][row] = i;
         }
         else
         {
-            while (quadrat[spalte][zeile] != 0)
+            while (square[column][row] != 0)
             {
-                spalte = linkeSpalte(spalte, seitenlaenge);
-                zeile = untereZeile(zeile, seitenlaenge);
+                column = (column + sidelength - 1) % sidelength; //+seitenlaenge um -1 % seitenlaenge = -1 zu entgehen
+                row = (row + 1) % sidelength;
             }
-            quadrat[spalte][zeile] = i;
-            i++;
+            square[column][row] = i;
         }
     }
-    return quadrat;
-}
-
-int rechteSpalte(int spalte, int seitenlaenge)
-{
-    if (spalte + 1 == seitenlaenge)
-    {
-        return 0;
-    }
-    else
-    {
-        return spalte + 1;
-    }
-}
-
-int linkeSpalte(int spalte, int seitenlaenge)
-{
-    if (spalte - 1 == -1)
-    {
-        return seitenlaenge - 1;
-    }
-    else
-    {
-        return spalte - 1;
-    }
-}
-
-int untereZeile(int zeile, int seitenlaenge)
-{
-    if (zeile + 1 == seitenlaenge)
-    {
-        return 0;
-    }
-    else
-    {
-        return zeile + 1;
-    }
+    return square;
 }
