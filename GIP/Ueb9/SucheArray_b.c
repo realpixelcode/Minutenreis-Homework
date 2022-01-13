@@ -12,7 +12,7 @@ int main()
     int result = implementieren(searchedNumber);
     if (result != 0)
     {
-        printf("Ihre gesuchte Zahl ist die %d. Primzahl.", result);
+        printf("Ihre gesuchte Zahl ist die %d. Primzahl.\n", result);
     }
     return 0;
 }
