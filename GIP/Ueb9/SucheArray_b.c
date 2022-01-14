@@ -9,18 +9,13 @@ int main()
     int searchedNumber;
     printf("Geben sie eine Zahl ein, diese wird in einem Array aller Primzahlen bis 100 gesucht, bei Erfolg wird ihre position ausgegeben\n");
     scanf("%d", &searchedNumber);
-    int result = implementieren(searchedNumber);
+    int primes[25] = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97};
+    int result = binarySearch(searchedNumber, primes, 0, 24) + 1; //+1 damit die x. Primzahl ausgegeben wird
     if (result != 0)
     {
         printf("Ihre gesuchte Zahl ist die %d. Primzahl.\n", result);
     }
     return 0;
-}
-
-int implementieren(int searchedNumber)
-{
-    int primes[25] = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97};
-    return binarySearch(searchedNumber, primes, 0, 24) + 1; // Position = x. Primzahl
 }
 
 int *populateArray(int array[], int arrayLength)
