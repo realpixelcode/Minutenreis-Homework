@@ -7,7 +7,7 @@ int main()
 {
 
     char string[] = "YLHOH NDPHQ DOOPDHKOLFK CX GHU XHEHUCHXJXQJ HLQHQ JURVVHQ IHKOHU\nJHPDFKW CX KDEHQ DOV VLH YRQ GHQ EDHXPHQ KHUXQWHUJHNRPPHQ ZDUHQ XQG\nHLQLJH VDJWHQ VFKRQ GLH EDHXPH VHLHQ HLQ KROCZHJ JHZHVHQ GLH RCHDQH\nKDHWWH PDQ QLHPDOV YHUODVVHQ GXHUIHQ";
-    printf("%s\n", decipher(string, -3));
+    printf("%s\n", decipher(string, 3));
     return 0;
 }
 
@@ -21,7 +21,7 @@ char *decipher(char string[], int key)
         size++;
         if (string[i] >= 65 && string[i] <= 90)
         {
-            decryptedString[i] = (string[i] - 65 + key + 26) % 26 + 65; //+26 um negative Werte zu verhindern
+            decryptedString[i] = (string[i] - 65 - key + 26) % 26 + 65; //+26 um negative Werte zu verhindern
         }
         else
         {
