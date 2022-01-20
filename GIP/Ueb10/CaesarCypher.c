@@ -6,6 +6,7 @@ char *encipher(char string[], int key);
 int main()
 {
     char string[1000];
+    char example[] = "YLHOH NDPHQ DOOPDHKOLFK CX GHU XHEHUCHXJXQJ HLQHQ JURVVHQ IHKOHU JHPDFKW CX KDEHQ DOV VLH YRQ GHQ EDHXPHQ KHUXQWHUJHNRPPHQ ZDUHQ XQG HLQLJH VDJWHQ VFKRQ GLH EDHXPH VHLHQ HLQ KROCZHJ JHZHVHQ GLH RCHDQH KDHWWH PDQ QLHPDOV YHUODVVHQ GXHUIHQ";
     int key;
     int decision;
     printf("Geben sie ihren zu verschluesselnden String ein\n");
@@ -17,15 +18,19 @@ int main()
         printf("Ungueltige Eingabe\n");
         return 0;
     }
-    printf("Wollen sie \n 1 verschluesseln \n 2 entschluesseln\n");
+    printf("Wollen sie \n 1 verschluesseln \n 2 entschluesseln\n 3 Beispieltext entschluesseln\n");
     scanf("%d", &decision);
     if (decision == 1)
     {
         printf("%s\n", encipher(string, key));
     }
-    else
+    else if (decision == 2)
     {
         printf("%s\n", decipher(string, key));
+    }
+    else
+    {
+        printf("%s\n", decipher(example, key));
     }
     return 0;
 }
