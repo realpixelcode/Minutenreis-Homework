@@ -28,10 +28,6 @@ int add(int a, int b)
 
 int mult(int a, int b)
 {
-    if (b == 0)
-    {
-        return 0;
-    }
     if (b > 0)
     {
         return add(a, mult(a, b - 1));
@@ -40,4 +36,5 @@ int mult(int a, int b)
     {
         return add(-a, mult(a, b + 1));
     }
+    return 0;
 }
