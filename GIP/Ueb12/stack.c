@@ -21,7 +21,7 @@ int main()
     char string[1024];
     int error;
     printf("Geben sie ihren Text ein:\n");
-    scanf("%s", string);
+    scanf("%[^\n]", string);
     error = checkBrackets(string);
     if (error == -1)
     {
