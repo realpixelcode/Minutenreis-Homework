@@ -8,6 +8,14 @@
         "fstream": "c",
         "type_traits": "c",
         "stdio.h": "c",
-        "random": "c"
+        "random": "c",
+        "iosfwd": "c",
+        "stdlib.h": "c",
+        "unordered_map": "c",
+        "memory": "c",
+        "initializer_list": "c",
+        "numeric": "c",
+        "streambuf": "c",
+        "tuple": "c"
     }
 }
