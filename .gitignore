@@ -4,3 +4,4 @@
 *.out
 GIP/andere_Studenten/*
 !.gitkeep
+.vscode/*
