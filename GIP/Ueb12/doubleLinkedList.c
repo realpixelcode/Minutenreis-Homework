@@ -9,11 +9,11 @@ void deleteWithValue(int val);
 
 struct dnode *head, *tail;
 
-struct dnode
+typedef struct dnode
 {
     int data;
     struct dnode *next, *prev;
-};
+} dnode;
 
 int main()
 {
@@ -23,13 +23,14 @@ int main()
     scanf("%d", &zahl);
     deleteWithValue(zahl);
     printList();
+    return 0;
 }
 
 void createPrimes()
 {
     int prime[25] = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97};
-    struct dnode *node = NULL;
-    struct dnode *prev = NULL;
+    dnode *node = NULL;
+    dnode *prev = NULL;
     node = mkNode(prime[0]);
     head = node;
     prev = node;
@@ -41,23 +42,25 @@ void createPrimes()
         prev = node;
     }
     tail = node;
+    return;
 }
 
 void printList()
 {
-    struct dnode *node = head;
+    dnode *node = head;
     while (node != NULL)
     {
         printf("%d ", node->data);
-        node = node->next;
+        node = node->next;  
     }
     printf("\n");
+    return;
 }
 
-struct dnode *mkNode(int val)
+dnode *mkNode(int val)
 {
-    struct dnode *node = NULL;
-    if ((node = malloc(sizeof(struct dnode))) != NULL)
+    dnode *node = NULL;
+    if ((node = malloc(sizeof(dnode))) != NULL)
     {
         node->data = val;
         node->next = node->prev = NULL;
@@ -71,7 +74,7 @@ struct dnode *mkNode(int val)
 
 void insertAtHead(int val)
 {
-    struct dnode *p = mkNode(val);
+    dnode *p = mkNode(val);
     p->next = head;
     if (head != NULL)
     {
@@ -82,11 +85,12 @@ void insertAtHead(int val)
     {
         head = tail = p;
     }
+    return;
 }
 
 void deleteWithValue(int val)
 {
-    struct dnode *p = head;
+    dnode *p = head;
     while (p != NULL)
     {
         if (p->data == val)
@@ -116,4 +120,5 @@ void deleteWithValue(int val)
         }
         p = p->next;
     }
+    return;
 }
