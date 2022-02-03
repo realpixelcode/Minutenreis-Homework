@@ -44,9 +44,7 @@ int main()
 // returns position of error, return -1 if no error is found
 int checkBrackets(char string[])
 {
-    int i = 0;
-    int error = -1;
-    while (string[i] != '\0')
+    for (int i = 0; string[i] != '\0'; i++)
     {
         if (string[i] == '{' || string[i] == '(' || string[i] == '[')
         {
@@ -60,18 +58,19 @@ int checkBrackets(char string[])
             }
             else
             {
-                error = i;
-                break;
+                freeStack();
+                return i;
             }
         }
-        i++;
     }
-    if (top != NULL && error == -1)
+    if (top != NULL)
     {
-        error = top->position;
+        int temp = top->position;
+        freeStack();
+        return temp;
     }
     freeStack();
-    return error;
+    return -1;
 }
 
 void freeStack(void)
