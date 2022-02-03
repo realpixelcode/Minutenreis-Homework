@@ -6,6 +6,7 @@ void push(char x, int pos);
 int checkBrackets(char string[]);
 char topValue(void);
 char topValueConverted(void);
+void freeStack(void);
 
 struct node *top;
 
@@ -69,7 +70,19 @@ int checkBrackets(char string[])
     {
         error = top->position;
     }
+    freeStack();
     return error;
+}
+
+void freeStack(void)
+{
+    while(top != NULL)
+    {
+        struct node *temp = top;
+        top = top->next;
+        free(temp);
+    }
+    return;
 }
 
 void push(char x, int pos)
