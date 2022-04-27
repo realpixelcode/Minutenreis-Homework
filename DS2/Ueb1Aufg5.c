@@ -10,7 +10,7 @@ int main(){
     scanf("%d", &n);
     unsigned long long result = smallestNumberFulfilling(n);
     printf("\nresult: %llu\n", result);
-    printf("%d x 1; %d x 0\n", numberOnes(result), numberZeroes(result));
+    printf("%d x 1; %d x 0, Vielfaches: %llu\n", numberOnes(result), numberZeroes(result), result/n);
     return 0;
 }
 
