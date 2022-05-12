@@ -1,30 +1,49 @@
+import java.util.Arrays;
+
 public class Aufg1 {
+
     public static void main(String[] args) {
-        int[] a = { 0,0,0,0 };
-        int[] b = a;
-        System.out.println(java.util.Arrays.toString(b));
-        int sum = 0;
-        for (int i = 0; i < a.length; i++)
-            sum += a[i];
-        System.out.println(sum);
-        int k = 0;
-        for (int i = 1; i <= a.length; i++)
-            System.out.println(i + ": " + a[k++]);
-        int[] m = new int[a.length - 2];
-        for (int i = 1; i < a.length - 1; i++) {
-            int val = (a[i - 1] + a[i] + a[i + 1]);
-            m[i - 1] = val / 3;
-        }
-        int max = 0;
+        int[] a1 = { 1, 2, 3, 4, 5 };
+        int[] c = AufgC(a1);
+        int[] d = AufgD(a1);
+        System.out.println(Arrays.toString(c));
+        System.out.println(Arrays.toString(d));
+    }
+
+    public static int[] AufgC(int[] a) {
+        int[] a1 = new int[a.length % 2 == 1 ? a.length / 2 + 1 : a.length / 2];
+        int[] a2 = new int[a.length/2];
         for (int i = 0; i < a.length; i++) {
-            if (a[i] > max)
-                max = a[i];
+            if (i % 2 == 0) {
+                a1[i / 2] = a[i];
+            } else {
+                a2[i / 2] = a[i];
+            }
         }
-        System.out.println(max);
-        int i = 0;
-        while (a[i] == 0 & ++i < a.length)
-            ;
-        System.out.println(i);
+        return a1;
+    }
+
+    public static int[] AufgD(int[] a) {
+        int evenElements = 0;
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] % 2 == 0) {
+                evenElements++;
+            }
+        }
+        int[] b1 = new int[evenElements];
+        int[] b2 = new int[a.length - evenElements];
+        int j = 0;
+        int k = 0;
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] % 2 == 0) {
+                b1[j] = a[i];
+                j++;
+            } else {
+                b2[k] = a[i];
+                k++;
+            }
+        }
+        return b1;
     }
 
 }
