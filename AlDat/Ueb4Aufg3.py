@@ -1,6 +1,7 @@
 
 
 def splitIntoSubArrays(A, numberOfSubArrays):
+    A.sort()
     Ai = []
     m = len(A) // numberOfSubArrays
     for i in range(numberOfSubArrays):
@@ -10,7 +11,7 @@ def splitIntoSubArrays(A, numberOfSubArrays):
         Ai[j].append(A[i])
     return Ai
 
-a1 = [1,2,3,4,5,6,7,8,9,10,11,12]
-a2 = splitIntoSubArrays(a1,6)
+a1 = [3,1,2,5,4,7,6,8]
+a2 = splitIntoSubArrays(a1,2)
 for i in range(len(a2)):
     print(a2[i])
