@@ -1,23 +1,23 @@
-public class Hoersaal {
+class Hoersaal {
     Integer plaetze;
     Vorlesung[] vorlesungen;
     Adresse adresse;
 
-    public Hoersaal(Integer plaetze, Adresse adr, Vorlesung[] vlg) {
+    Hoersaal(Integer plaetze, Adresse adr, Vorlesung[] vlg) {
         this.adresse = adr;
         this.plaetze = plaetze;
         this.vorlesungen = vlg;
     }
 
-    public Integer getPlaetze() {
+    Integer getPlaetze() {
         return plaetze;
     }
 
-    public Vorlesung[] getVorlesungen() {
+    Vorlesung[] getVorlesungen() {
         return vorlesungen;
     }
 
-    public Adresse getAdresse() {
+    Adresse getAdresse() {
         return adresse;
     }
     

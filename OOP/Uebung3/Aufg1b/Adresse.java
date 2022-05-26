@@ -1,23 +1,23 @@
-public class Adresse {
+class Adresse {
     String strasse;
     String plz;
     String ort;
 
-    public Adresse(String strasse, String plz, String ort) {
+    Adresse(String strasse, String plz, String ort) {
         this.strasse = strasse;
         this.plz = plz;
         this.ort = ort;
     }
 
-    public String getStrasse() {
+    String getStrasse() {
         return strasse;
     }
 
-    public String getPlz() {
+    String getPlz() {
         return plz;
     }
 
-    public String getOrt() {
+    String getOrt() {
         return ort;
     }
 }

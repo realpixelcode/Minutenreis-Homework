@@ -1,4 +1,4 @@
 
-public class Praktikum {
+class Praktikum {
     // this is a dummy class
 }
