@@ -7,9 +7,9 @@ def arrayIncludesNoDoubles(array: list) -> bool:
     return True
 
 array = list(multiset_permutations([1,1,1,2,2,3,3,4,5,6]))
-array2 = []
+count = 0
 for element in array:
     if(arrayIncludesNoDoubles(element)):
-        array2.append(element)
-print(len(array2))
+        count+= 1
+print(count)
 
