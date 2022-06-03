@@ -10,8 +10,7 @@ public class PickUp extends Auto{
     }
 
     PickUp(String kennzeichen, int fassungsvermögen){
-        super(kennzeichen);
-        this.sitzplaetze = 2;
+        super(kennzeichen, AnzahlPlaetze.ZWEI);
         this.f = fassungsvermögen;
         this.ladung = 0;
     }
@@ -51,6 +50,6 @@ public class PickUp extends Auto{
     }
 
     public String toString(){
-        return super.toString() + " mit Fassungsvermögen "+this.f+" und Ladung "+this.ladung;
+        return super.toString() + "\tmit Fassungsvermögen "+this.f+" und Ladung "+this.ladung;
     }
 }

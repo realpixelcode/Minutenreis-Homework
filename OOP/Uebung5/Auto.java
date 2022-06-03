@@ -4,6 +4,11 @@ public class Auto {
     int sitzplaetze;
     boolean antenneAusgefahren;
 
+    enum AnzahlPlaetze{
+        ZWEI,
+        FUENF
+    }
+
     Auto(){
         this.kennzeichen = "J-AA 01";
         this.kilometerstand = 0;
@@ -15,6 +20,34 @@ public class Auto {
         this.kennzeichen = kennzeichen;
         this.kilometerstand = 0;
         this.sitzplaetze = 5;
+        this.antenneAusgefahren = false;
+    }
+
+    Auto(String kennzeichen, AnzahlPlaetze sitzplaetze){
+        this.kennzeichen = kennzeichen;
+        this.kilometerstand = 0;
+        switch(sitzplaetze){
+            case ZWEI:
+                this.sitzplaetze = 2;
+                break;
+            case FUENF:
+                this.sitzplaetze = 5;
+                break;
+        }
+        this.antenneAusgefahren = false;
+    }
+
+    Auto(AnzahlPlaetze sitzplaetze){
+        this.kennzeichen = "J-AA 01";
+        this.kilometerstand = 0;
+        switch(sitzplaetze){
+            case ZWEI:
+                this.sitzplaetze = 2;
+                break;
+            case FUENF:
+                this.sitzplaetze = 5;
+                break;
+        }
         this.antenneAusgefahren = false;
     }
 
@@ -63,6 +96,6 @@ public class Auto {
     }
 
     public String toString(){
-        return "Kennzeichen: " + this.kennzeichen + "\tKilometerstand: " + this.kilometerstand + "\tSitzplaetze: " + this.sitzplaetze + "\tAntenne ausgefahren: " + this.antenneAusgefahren;
+        return "Kennzeichen: " + this.kennzeichen + "\tKilometerstand: " + this.kilometerstand + "\tSitzplaetze: " + this.sitzplaetze + "\tAntenne ausgefahren: " + (this.antenneAusgefahren==true? "ja" : "nein");
     }
 }
