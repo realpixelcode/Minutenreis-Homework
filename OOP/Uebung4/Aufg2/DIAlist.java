@@ -5,7 +5,7 @@ class DIAlist extends DynIntArray{
     class Node {
         int value;
         Node next;
-        Node prev;
+        Node prev;  
 
         Node(int value) {
             this.value = value;

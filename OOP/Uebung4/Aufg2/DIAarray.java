@@ -34,7 +34,7 @@ class DIAarray extends DynIntArray {
             newArray[i] = array[i];
         }
         newArray[array.length] = e;
-        array = newArray;
+        this.array = newArray;
     }
 
     @Override
