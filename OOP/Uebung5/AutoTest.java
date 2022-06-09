@@ -8,6 +8,7 @@ public class AutoTest {
         autos[4] = new Auto("J-AA 04", Auto.AnzahlPlaetze.FUENF);
         autos[5] = new PickUp(100);
         autos[6] = new PickUp("J-AA 05", 100);
+        autosToString(autos);
         for (int i = 0; i < autos.length; i++) {
             autos[i].fahreAntenneAus();
             autos[i].fahreAntenneAus();
@@ -25,8 +26,13 @@ public class AutoTest {
                 pickup.entladen(20);
                 pickup.wasche();
             }
+        }
+        autosToString(autos);
+    }
+
+    static void autosToString(Auto[] autos){
+        for(int i = 0; i < autos.length; i++){
             System.out.println(autos[i]);
         }
-
     }
 }
