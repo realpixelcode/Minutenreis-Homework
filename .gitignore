@@ -1,7 +1,7 @@
-
 *.exe
 *.zip
 *.out
+*.class
 GIP/andere_Studenten/*
 !.gitkeep
 .vscode/*
