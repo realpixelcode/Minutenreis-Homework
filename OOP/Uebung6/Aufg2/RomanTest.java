@@ -13,7 +13,7 @@ public class RomanTest {
         for (int i = 0; i < arr.length; i++) {
             System.out.println("r"+(i+1)+"\t"+arr[i]+"\t"+arr[i].hashCode());
         }
-        System.out.println("\n");
+        System.out.println();
         System.out.println("r1 + r2 = " + r1.add(r2));
         System.out.println("r1 - r2 = " + r1.subtract(r2));
         System.out.println("r6 - r5 = " + r6.subtract(r5));
