@@ -4,12 +4,15 @@ class Rectangle extends Figure implements MobileObjekt {
 
     Rectangle() {
         super();
-        this.width = 0;
-        this.height = 0;
+        this.width = 1;
+        this.height = 1;
     }
 
     Rectangle(float pointX, float pointY, float width, float height) {
         super(pointX, pointY);
+        if(width <= 0 || height <= 0){
+            throw new IllegalArgumentException("Width and height must be greater than 0");
+        }
         this.width = width;
         this.height = height;
     }
@@ -35,12 +38,18 @@ class Rectangle extends Figure implements MobileObjekt {
 
     @Override
     public void increase(float n) {
+        if(n<=0){
+            throw new IllegalArgumentException("Error: n must be greater than 0");
+        }
         width *= n;
         height *= n;
     }
 
     @Override
     public void decrease(float n) {
+        if(n <= 0){
+            throw new IllegalArgumentException("n must be greater than 0");
+        }
         width /= n;
         height /= n;
     }
