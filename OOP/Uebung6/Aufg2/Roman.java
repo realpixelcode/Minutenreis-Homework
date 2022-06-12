@@ -17,7 +17,12 @@ class Roman {
     }
 
     public Roman subtract(Roman r) {
-        return new Roman(this.arabic - r.arabic);
+        int number = this.arabic - r.arabic;
+        if (number <= 0) {
+            System.out.println("Error: Subtraction results in non positive number.");
+            return new Roman(1);
+        }
+        return new Roman(number);
     }
 
     public Roman multiply(Roman r) {
@@ -25,12 +30,17 @@ class Roman {
     }
 
     public Roman divide(Roman r) {
-        return new Roman(this.arabic / r.arabic);
+        int number = this.arabic / r.arabic;
+        if (number <= 0) {
+            System.out.println("Error: Division results in 0.");
+            return new Roman(1);
+        }
+        return new Roman(number);
     }
 
     @Override
     public String toString() {
-        return this.roman + " " + Integer.toString(this.arabic);
+        return Integer.toString(this.arabic) + "\t" + this.roman;
     }
 
     @Override
