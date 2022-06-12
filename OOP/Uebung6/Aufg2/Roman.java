@@ -5,11 +5,17 @@ class Roman {
     public Roman(int arabic) {
         this.arabic = arabic;
         this.roman = arabicToRoman(arabic);
+        if(arabic <= 0){
+            throw new IllegalArgumentException("arabic must be greater than 0");
+        }
     }
 
     public Roman(String roman) {
         this.roman = roman;
         this.arabic = romanToArabic(roman);
+        if(!roman.equals(arabicToRoman(this.arabic))) {
+            throw new IllegalArgumentException("Invalid roman number: " + roman);
+        }
     }
 
     public Roman add(Roman r) {
@@ -98,6 +104,9 @@ class Roman {
             if (arabic - 1000 >= 0) {
                 roman = roman + "M";
                 arabic = arabic - 1000;
+            } else if (arabic - 900 >= 0) {
+                roman = roman + "CM";
+                arabic = arabic - 900;
             } else if (arabic - 500 >= 0) {
                 roman = roman + "D";
                 arabic = arabic - 500;
